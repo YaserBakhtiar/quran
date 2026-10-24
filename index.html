@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14090d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="القرآن">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/maskable_icon_x192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>القرآن الكريم · قرآن کریم</title>
+<style>
+/* فونت‌ها: اگر فایل‌ها را در پوشهٔ fonts بگذارید استفاده می‌شوند، وگرنه فونت سیستم */
+@font-face{font-family:"Vazirmatn";src:url(fonts/Vazirmatn.woff2) format("woff2"),local("Vazirmatn");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Amiri";src:url(fonts/Amiri-Regular.woff2) format("woff2"),local("Amiri"),local("Amiri Regular");font-display:swap}
+:root{--bg:#14090d;--ink:#f7efe4;--mute:#b9a9a3;--mar:#8a1538;--mar2:#c4305c;--teal:#1b8a94;--sand:#e2cda2;--gc:255,255,255;--g0:.09;--gk:1;--gb:26px;--line:rgba(255,255,255,.1);--sh:rgba(0,0,0,.5);
+--ar:"Amiri","Noto Naskh Arabic","Geeza Pro","Damascus",serif;--ui:"Vazirmatn","SF Arabic",system-ui,-apple-system,"Noto Sans Arabic",sans-serif;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root{--bg:#f3eee6;--ink:#2a1218;--mute:#7b6a66;--g0:.55;--line:rgba(60,20,30,.1);--sh:rgba(80,30,40,.25)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;color:var(--ink);font:16px/1.65 var(--ui);overscroll-behavior:none;
+background:radial-gradient(70% 45% at 100% 0,rgba(196,48,92,.35),transparent 70%),radial-gradient(60% 40% at 0 100%,rgba(27,138,148,.28),transparent 70%),var(--bg);background-attachment:fixed}
+button,input{font:inherit;color:inherit}button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--sand);outline-offset:2px}
+.glass{background:rgba(var(--gc),calc(var(--g0)*var(--gk)));backdrop-filter:blur(var(--gb)) saturate(1.8);-webkit-backdrop-filter:blur(var(--gb)) saturate(1.8);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 14px 34px -14px var(--sh)}
+.view{display:none;position:fixed;inset:0;overflow-y:auto;padding:calc(var(--sat) + 18px) 18px calc(var(--sab) + 120px);-webkit-overflow-scrolling:touch}.view.on{display:block}
+h1{font:700 34px/1.25 var(--ui);margin:6px 4px 18px;letter-spacing:-.01em}h1.ar{font:400 46px/1.3 var(--ar)}
+h2{font:600 14px var(--ui);color:var(--mute);margin:28px 8px 10px}
+.hero{display:flex;gap:16px;align-items:center;padding:18px;border-radius:32px;background:linear-gradient(135deg,rgba(168,30,72,.85),rgba(52,8,24,.8))}
+.hero img{width:96px;height:134px;object-fit:cover;object-position:top;border-radius:12px;background:#fff;box-shadow:0 14px 28px -8px #000;flex:none}
+.hero .n{font:400 36px/1.25 var(--ar);color:#fff}.hero .m{color:#f2d8df;font-size:14px}
+.bar{height:6px;border-radius:9px;background:rgba(255,255,255,.2);margin:10px 0 4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--sand);border-radius:9px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:99px;font-weight:600;background:var(--ink);color:var(--bg)}.btn.g{background:rgba(var(--gc),.16);color:var(--ink)}.btn.mar{background:var(--mar2);color:#fff}.btn.f{width:100%}.btn:disabled{opacity:.5}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:8px 18px;border-radius:99px;font:400 22px/1.5 var(--ar)}
+.goto{display:flex;gap:8px}.in{flex:1;min-height:50px;border-radius:99px;padding:0 20px;width:100%;color:var(--ink);background:rgba(var(--gc),.1);border:1px solid var(--line)}.in::placeholder{color:var(--mute)}
+.seg{display:flex;border-radius:99px;padding:4px;margin-bottom:12px}.seg button{flex:1;padding:8px;border-radius:99px;color:var(--mute);font-weight:600}.seg .on{background:rgba(var(--gc),.2);color:var(--ink)}
+.grp{border-radius:28px;padding:4px 16px;margin-top:10px}
+.row{display:flex;align-items:center;gap:14px;width:100%;padding:11px 0;border-bottom:1px solid var(--line);text-align:start}.grp>.row:last-child,.grp>div:last-child .row{border:0}
+.num{width:40px;height:40px;flex:none;display:grid;place-items:center;position:relative;font-size:13px;color:var(--sand)}.num:before,.num:after{content:"";position:absolute;inset:7px;border:1.5px solid var(--mar2);border-radius:4px}.num:after{transform:rotate(45deg)}.num b{position:relative;font-weight:600}
+.row .t{flex:1;font:400 26px/1.4 var(--ar)}.row small{color:var(--mute);font-size:13px}.x{color:var(--mute);padding:10px}
+html[lang=fa] .row .t{font:500 21px/1.5 var(--ui)}html[lang=fa] .hero .n{font:600 28px/1.4 var(--ui)}html[lang=fa] .chip{font:500 17px/1.6 var(--ui)}html[lang=fa] .cap b{font:600 18px var(--ui)}
+.empty{text-align:center;color:var(--mute);padding:60px 20px}
+.set{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.set:last-child{border:0}
+.opts{display:flex;gap:6px;padding:4px;border-radius:99px}.opts button{padding:6px 14px;border-radius:99px;color:var(--mute);font-size:14px;font-weight:600}.opts .on{background:rgba(var(--gc),.22);color:var(--ink)}
+input[type=range]{flex:1;accent-color:var(--mar2);height:30px;min-width:0}
+nav{position:fixed;left:16px;right:16px;bottom:calc(var(--sab) + 12px);display:flex;padding:6px;border-radius:99px;z-index:5}
+nav button{flex:1;display:grid;justify-items:center;padding:7px 4px 5px;border-radius:99px;font-size:11px;font-weight:600;color:var(--mute);line-height:1.4}nav .on{background:rgba(var(--gc),.2);color:var(--ink)}nav .on svg{stroke:var(--mar2)}
+svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+#reader{position:fixed;inset:0;z-index:10;background:#0b0507;display:none}#reader.on{display:block}
+#stage{position:absolute;inset:0;overflow:auto;display:flex;justify-content:center;align-items:center;padding:calc(var(--sat) + 4px) 4px calc(var(--sab) + 4px)}
+#pg{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 24px 70px -10px #000}
+#stage.z{align-items:flex-start;justify-content:flex-start;padding:0}#stage.z #pg{max-width:none;max-height:none;width:230%;border-radius:0}
+.fl{animation:fl .28s ease-out}@keyframes fl{from{opacity:.2;transform:translateX(var(--d,18px))}}
+[data-t=sepia] #pg{filter:sepia(.4) brightness(.96)}[data-t=night] #pg{filter:invert(1) hue-rotate(180deg) brightness(.8) contrast(.95);box-shadow:none}
+[data-t=sepia] #reader{background:#2b2116}[data-t=night] #reader{background:#000}
+.rb{position:absolute;left:12px;right:12px;display:flex;align-items:center;gap:8px;z-index:2;transition:transform .3s,opacity .3s;color:var(--ink)}
+.rb.t{top:calc(var(--sat) + 8px)}.rb.b{bottom:calc(var(--sab) + 10px);padding:6px 8px;border-radius:99px;color:#f7efe4}
+.hide .rb.t{transform:translateY(-140%);opacity:0}.hide .rb.b{transform:translateY(160%);opacity:0}
+.ib{width:46px;height:46px;flex:none;display:grid;place-items:center;border-radius:50%;color:#f7efe4}.ib.on svg{fill:var(--mar2);stroke:var(--mar2)}
+.cap{flex:1;text-align:center;line-height:1.3;padding:5px 12px;border-radius:99px;color:#f7efe4;user-select:none;-webkit-user-select:none}.cap b{font:400 22px var(--ar);display:block}.cap small{opacity:.7;font-size:12px}
+#pn{font-size:13px;min-width:34px;text-align:center;font-weight:600}
+#err{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:40px;color:var(--mute);pointer-events:none}
+#toast{position:fixed;left:50%;bottom:calc(var(--sab) + 96px);transform:translate(-50%,20px);padding:10px 20px;border-radius:99px;opacity:0;transition:.25s;z-index:20;pointer-events:none;font-size:14px}#toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body data-t="day">
+
+<section class="view on" id="v-home">
+  <h1 class="ar" data-i="title"></h1>
+  <div class="hero">
+    <img id="hThumb" alt="">
+    <div style="flex:1;min-width:0">
+      <div class="m" data-i="cont"></div>
+      <div class="n" id="hName"></div>
+      <div class="m" id="hMeta"></div>
+      <div class="bar"><i id="hBar"></i></div>
+      <div class="m" id="hPct" style="font-size:12px"></div>
+      <button class="btn" id="hGo" style="margin-top:10px;min-height:42px" data-i="resume"></button>
+    </div>
+  </div>
+  <h2 data-i="quick"></h2>
+  <div class="chips" id="quick"></div>
+  <h2 data-i="gotoT"></h2>
+  <div class="goto"><input class="in" id="gIn" type="number" inputmode="numeric" min="1" max="610" data-ph="gph"><button class="btn g glass" id="gBtn" data-i="gbtn"></button></div>
+  <div class="glass grp" id="inst" style="display:none;padding:14px 18px;margin-top:26px"><b data-i="instT"></b><p style="margin:4px 0 0;color:var(--mute);font-size:14px" data-i="instD"></p></div>
+</section>
+
+<section class="view" id="v-index">
+  <h1 data-i="index"></h1>
+  <div class="seg glass"><button class="on" data-m="s" data-i="sur"></button><button data-m="j" data-i="juz"></button></div>
+  <input class="in" id="q" data-ph="sph">
+  <div class="glass grp" id="list"></div>
+</section>
+
+<section class="view" id="v-marks">
+  <h1 data-i="marks"></h1>
+  <div class="glass grp" id="mlist"></div>
+</section>
+
+<section class="view" id="v-off">
+  <h1 data-i="set"></h1>
+  <div class="glass grp" style="padding:16px 18px">
+    <b data-i="dlT"></b>
+    <p style="color:var(--mute);font-size:14px;margin:4px 0 12px" id="dTxt"></p>
+    <div class="bar"><i id="dBar" style="width:0;background:var(--mar2)"></i></div>
+    <p style="margin:6px 0 4px;font-size:13px;color:var(--mute)" id="dSub"></p>
+    <p style="margin:0 0 14px;font-size:13px;color:var(--sand)" id="rdy"></p>
+    <button class="btn mar f" id="dBtn"></button>
+    <button class="btn g f" id="dDel" style="margin-top:8px" data-i="del"></button>
+  </div>
+  <h2 data-i="look"></h2>
+  <div class="glass grp">
+    <div class="set"><span data-i="lang"></span><div class="opts glass" id="lang"><button data-l="fa">فارسی</button><button data-l="ar">العربية</button></div></div>
+    <div class="set"><span data-i="page"></span><div class="opts glass" id="themes"><button data-t="day" data-i="day"></button><button data-t="sepia" data-i="sepia"></button><button data-t="night" data-i="night"></button></div></div>
+    <div class="set"><span data-i="glass"></span><input type="range" id="gl" min="30" max="220" value="100" style="max-width:150px"></div>
+    <div class="set" style="flex-wrap:wrap"><span data-i="fnt"></span><small id="fnt" style="color:var(--mute)"></small><small id="fntH" style="color:var(--mute);width:100%"></small></div>
+    <div class="set"><span data-i="wake"></span><div class="opts glass" id="wake"><button data-w="1" data-i="on"></button><button data-w="0" data-i="off"></button></div></div>
+  </div>
+</section>
+
+<nav class="glass" id="tabs">
+  <button class="on" data-v="home"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2zM19 18v3H6"/></svg><span data-i="home"></span></button>
+  <button data-v="index"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><span data-i="index"></span></button>
+  <button data-v="marks"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span data-i="marks"></span></button>
+  <button data-v="off"><svg viewBox="0 0 24 24"><path d="M12 4v11m-4-4 4 4 4-4M5 20h14"/></svg><span data-i="off"></span></button>
+</nav>
+
+<div id="reader">
+  <div id="stage"><img id="pg" alt=""></div>
+  <div id="err" data-i="err"></div>
+  <div class="rb t">
+    <button class="ib glass" id="rBack" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="cap glass" id="cap"><b id="rS"></b><small id="rM"></small></div>
+    <button class="ib glass" id="rMark" aria-label="Bookmark"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+  </div>
+  <div class="rb b glass">
+    <button class="ib" id="rTheme" aria-label="Theme"><svg viewBox="0 0 24 24"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></button>
+    <input type="range" id="rR" min="1" max="610" aria-label="Page">
+    <span id="pn"></span>
+  </div>
+</div>
+<div id="toast" class="glass"></div>
+
+<script>
+/* ============ تنظیمات / إعدادات ============
+   Quran002.webp = صفحهٔ ۱ (الفاتحه). 610 صفحه + یک جلد = 611 فایل.
+   اگر فایل‌های شما شمارهٔ دیگری دارند فقط این سه خط را عوض کنید. */
+const TOTAL=610, FILE_OFFSET=1;
+const IMG=p=>`webp-image/Quran${String(p+FILE_OFFSET).padStart(3,'0')}.webp`;
+/* ======================================== */
+const S={
+title:['قرآن کریم','القرآن الكريم'],cont:['ادامهٔ مطالعه','تابع القراءة'],resume:['ادامه بده','تابع'],quick:['سوره‌های پرخوان','سور مختارة'],
+gotoT:['رفتن به صفحه','الانتقال إلى صفحة'],gph:['شمارهٔ صفحه، ۱ تا ۶۱۰','رقم الصفحة من ١ إلى ٦١٠'],gbtn:['برو','اذهب'],
+home:['خانه','الرئيسية'],index:['فهرست','الفهرس'],marks:['نشانه‌ها','العلامات'],off:['آفلاین','دون إنترنت'],set:['آفلاین و تنظیمات','التنزيل والإعدادات'],
+sur:['سوره‌ها','السور'],juz:['جزءها','الأجزاء'],sph:['جستجوی سوره یا شماره…','ابحث عن سورة أو رقم…'],pj:['جزء','الجزء'],page:['صفحه','صفحة'],
+emptyM:['هنوز صفحه‌ای نشانه نشده. هنگام مطالعه روی نشانه بزنید.','لا توجد علامات بعد. اضغط على العلامة أثناء القراءة.'],nf:['چیزی پیدا نشد','لا نتائج'],
+dlT:['دانلود برای استفادهٔ بدون اینترنت','تنزيل للقراءة دون إنترنت'],
+dlD:['با Wi-Fi دانلود کنید تا همهٔ صفحه‌ها روی گوشی بماند.','نزّل عبر Wi-Fi لتبقى كل الصفحات على جهازك.'],dlDone:['همهٔ صفحه‌ها ذخیره است؛ برنامه بدون اینترنت کار می‌کند.','كل الصفحات محفوظة؛ يعمل التطبيق دون إنترنت.'],
+dlStart:['دانلود کل قرآن','تنزيل المصحف كاملاً'],dlRes:['ادامهٔ دانلود','متابعة التنزيل'],dlStop:['توقف','إيقاف'],dlOk:['همه دانلود شده ✓','تم التنزيل ✓'],
+of:['از','من'],fail:['ناموفق','فشل'],mb:['مگابایت','ميغابايت'],del:['پاک کردن دانلودها','حذف التنزيلات'],delQ:['همهٔ صفحه‌های دانلودشده پاک شود؟','حذف كل الصفحات المنزّلة؟'],
+look:['ظاهر و زبان','المظهر واللغة'],lang:['زبان','اللغة'],day:['روز','نهار'],sepia:['کاغذی','ورقي'],night:['شب','ليل'],glass:['شفافیت شیشه','شفافية الزجاج'],
+wake:['روشن ماندن صفحه','إبقاء الشاشة مضاءة'],on:['روشن','تشغيل'],off2:['خاموش','إيقاف'],err:['این صفحه دانلود نشده و اینترنت وصل نیست. از بخش «آفلاین» دانلود کنید.','هذه الصفحة غير منزّلة ولا يوجد اتصال. نزّلها من قسم «دون إنترنت».'],
+instT:['نصب روی آیفون','التثبيت على الآيفون'],instD:['در Safari دکمهٔ اشتراک‌گذاری را بزنید و Add to Home Screen را انتخاب کنید.','في Safari اضغط زر المشاركة ثم Add to Home Screen.'],
+bad:['عددی بین ۱ تا ۶۱۰ وارد کنید','أدخل رقماً من ١ إلى ٦١٠'],marked:['نشانه شد','تمت الإضافة'],unmarked:['نشانه برداشته شد','أُزيلت العلامة'],
+done:['دانلود کامل شد','اكتمل التنزيل'],paused:['دانلود متوقف شد','تم الإيقاف'],part:['بعضی صفحه‌ها دانلود نشد','تعذّر تنزيل بعض الصفحات'],
+fnt:['فونت‌ها','الخطوط'],fntH:['اگر ✗ دیدید، پوشهٔ fonts را آپلود کنید؛ فعلاً از فونت سیستم استفاده می‌شود.','إن ظهرت ✗ فارفع مجلد fonts؛ يُستخدم خط النظام حالياً.'],ready:['برنامه برای استفادهٔ آفلاین آماده است ✓','التطبيق جاهز للعمل دون إنترنت ✓'],notReady:['برنامه هنوز آفلاین نشده؛ یک بار با اینترنت باز کنید و صفحه را دوباره بارگذاری کنید.','لم يُحفظ التطبيق بعد؛ افتحه مرة بالإنترنت ثم أعد التحميل.']};
+const SN="الفاتحة|البقرة|آل عمران|النساء|المائدة|الأنعام|الأعراف|الأنفال|التوبة|يونس|هود|يوسف|الرعد|إبراهيم|الحجر|النحل|الإسراء|الكهف|مريم|طه|الأنبياء|الحج|المؤمنون|النور|الفرقان|الشعراء|النمل|القصص|العنكبوت|الروم|لقمان|السجدة|الأحزاب|سبأ|فاطر|يس|الصافات|ص|الزمر|غافر|فصلت|الشورى|الزخرف|الدخان|الجاثية|الأحقاف|محمد|الفتح|الحجرات|ق|الذاريات|الطور|النجم|القمر|الرحمن|الواقعة|الحديد|المجادلة|الحشر|الممتحنة|الصف|الجمعة|المنافقون|التغابن|الطلاق|التحريم|الملك|القلم|الحاقة|المعارج|نوح|الجن|المزمل|المدثر|القيامة|الإنسان|المرسلات|النبأ|النازعات|عبس|التكوير|الانفطار|المطففين|الانشقاق|البروج|الطارق|الأعلى|الغاشية|الفجر|البلد|الشمس|الليل|الضحى|الشرح|التين|العلق|القدر|البينة|الزلزلة|العاديات|القارعة|التكاثر|العصر|الهمزة|الفيل|قريش|الماعون|الكوثر|الكافرون|النصر|المسد|الإخلاص|الفلق|الناس".split("|");
+/* شروع سوره‌ها (شمارهٔ صفحه) و جزءها: دقیق، از فهرست مصحف هندوپاک ۶۱۰ صفحه‌ای */
+const ST=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,331,342,350,359,366,376,385,396,404,411,415,418,428,434,440,445,452,458,467,477,483,489,495,498,502,506,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,567,569,571,573,576,578,580,582,584,586,587,589,590,591,592,594,595,596,597,597,598,600,600,601,602,602,603,603,604,604,605,605,606,606,607,607,607,608,608,608,609,609,609,610,610,610];
+const JS=[...Array(30)].map((_,i)=>i===0?1:i===29?586:20*i+2);
+const SF=["فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const st={g:(k,d)=>{try{return JSON.parse(localStorage.getItem('q.'+k))??d}catch{return d}},s:(k,v)=>{try{localStorage.setItem('q.'+k,JSON.stringify(v))}catch{}}};
+let lang=st.g('lang','fa'),page=st.g('page',1),marks=st.g('marks',[]),theme=st.g('theme','day'),wake=st.g('wake',1),gk=st.g('gk',100),mode='s';
+const nm=i=>lang==='ar'?SN[i]:SF[i];
+const t=k=>S[k][lang==='ar'?1:0];
+const nf=n=>String(n).replace(/\d/g,d=>(lang==='ar'?'٠١٢٣٤٥٦٧٨٩':'۰۱۲۳۴۵۶۷۸۹')[d]);
+const clamp=p=>Math.max(1,Math.min(TOTAL,p|0||1));
+const sOf=p=>{let b=0;ST.forEach((s,i)=>{if(s<=p&&s>=ST[b])b=i});return b};
+const jOf=p=>{let b=0;JS.forEach((s,i)=>{if(s<=p)b=i});return b+1};
+let tt;const toast=m=>{const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1900)};
+
+function applyLang(){document.documentElement.lang=lang;qk();$$('[data-i]').forEach(e=>e.textContent=t(e.dataset.i==='off'&&e.closest('#wake')?'off2':e.dataset.i));$$('[data-ph]').forEach(e=>e.placeholder=t(e.dataset.ph));
+ $$('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));renderList();renderMarks();home();offUI();if(R.classList.contains('on'))go(page,0)}
+$('#lang').onclick=e=>{const l=e.target.dataset.l;if(l){lang=l;st.s('lang',l);applyLang()}};
+
+function show(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='home')home();if(v==='marks')renderMarks();if(v==='off')offUI()}
+$$('#tabs button').forEach(b=>b.onclick=()=>show(b.dataset.v));
+function home(){$('#hThumb').src=IMG(page);$('#hName').textContent=nm(sOf(page));$('#hMeta').textContent=`${t('page')} ${nf(page)} · ${t('pj')} ${nf(jOf(page))}`;$('#hBar').style.width=page/TOTAL*100+'%';$('#hPct').textContent=nf(Math.round(page/TOTAL*100))+'٪'}
+$('#hGo').onclick=()=>open(page);
+const qk=()=>{$('#quick').innerHTML=[36,18,67,55,56,2].map(s=>`<button class="chip glass" data-s="${s-1}">${nm(s-1)}</button>`).join('')};
+$('#quick').onclick=e=>{const s=e.target.dataset.s;if(s)open(ST[s])};
+$('#gBtn').onclick=()=>{const v=+$('#gIn').value;v>=1&&v<=TOTAL?open(v):toast(t('bad'))};
+$('#gIn').onkeydown=e=>e.key==='Enter'&&$('#gBtn').click();
+if(!navigator.standalone&&/iphone|ipad/i.test(navigator.userAgent))$('#inst').style.display='block';
+
+function renderList(){const q=$('#q').value.trim().replace(/[۰-۹]/g,d=>d.charCodeAt(0)-1776).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-1632);let h='';
+ if(mode==='s')SN.forEach((n,i)=>{if(q&&!n.includes(q)&&!SF[i].includes(q)&&String(i+1)!==q)return;h+=`<button class="row" data-p="${ST[i]}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${nm(i)}</span><small>${t('page')} ${nf(ST[i])}</small></button>`});
+ else JS.forEach((p,i)=>{if(q&&String(i+1)!==q)return;h+=`<button class="row" data-p="${p}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${t('pj')} ${nf(i+1)}</span><small>${nm(sOf(p))} · ${nf(p)}</small></button>`});
+ $('#list').innerHTML=h||`<div class="empty">${t('nf')}</div>`}
+$('#list').onclick=e=>{const r=e.target.closest('.row');r&&open(+r.dataset.p)};$('#q').oninput=renderList;
+$$('.seg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));renderList()});
+function renderMarks(){$('#mlist').innerHTML=marks.length?marks.slice().sort((a,b)=>a-b).map(p=>`<div style="display:flex;align-items:center"><button class="row" data-p="${p}"><span class="num"><b>${nf(p)}</b></span><span class="t">${nm(sOf(p))}</span><small>${t('pj')} ${nf(jOf(p))}</small></button><button class="x" data-d="${p}" aria-label="x">✕</button></div>`).join(''):`<div class="empty">${t('emptyM')}</div>`}
+$('#mlist').onclick=e=>{const d=e.target.dataset.d;if(d){marks=marks.filter(x=>x!==+d);st.s('marks',marks);renderMarks();return}const r=e.target.closest('[data-p]');r&&open(+r.dataset.p)};
+
+/* ---------- خواننده ---------- */
+const R=$('#reader'),pg=$('#pg'),stage=$('#stage');
+function setTheme(x){theme=x;document.body.dataset.t=x;st.s('theme',x);$$('#themes button').forEach(b=>b.classList.toggle('on',b.dataset.t===x))}
+function go(p,dir){page=clamp(p);st.s('page',page);$('#err').style.display='none';
+ pg.style.setProperty('--d',dir>0?'-18px':'18px');pg.classList.remove('fl');void pg.offsetWidth;pg.classList.add('fl');pg.src=IMG(page);
+ $('#rS').textContent=nm(sOf(page));$('#rM').textContent=`${t('pj')} ${nf(jOf(page))}`;$('#pn').textContent=nf(page);$('#rR').value=page;$('#rMark').classList.toggle('on',marks.includes(page));
+ [page+1,page-1,page+2].forEach(n=>n>=1&&n<=TOTAL&&(new Image().src=IMG(n)))}
+pg.onerror=()=>{$('#err').style.display='grid'};
+function open(p){R.classList.add('on');R.classList.remove('hide');stage.classList.remove('z');history.pushState({r:1},'');go(p,0);lock()}
+function close(){R.classList.remove('on');unlock();home()}
+$('#rBack').onclick=()=>history.back();addEventListener('popstate',()=>R.classList.contains('on')&&close());
+$('#rR').oninput=e=>go(+e.target.value,0);
+$('#rMark').onclick=()=>{marks=marks.includes(page)?marks.filter(x=>x!==page):[...marks,page];st.s('marks',marks);$('#rMark').classList.toggle('on',marks.includes(page));toast(t(marks.includes(page)?'marked':'unmarked'))};
+$('#rTheme').onclick=()=>setTheme({day:'sepia',sepia:'night',night:'day'}[theme]);
+let x0,y0,lt=0,tm;
+stage.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
+ if(!stage.classList.contains('z')&&Math.abs(dx)>50&&Math.abs(dx)>1.5*Math.abs(dy)){dx>0?go(page+1,1):go(page-1,-1);return}
+ if(Math.abs(dx)<10&&Math.abs(dy)<10){const n=Date.now();clearTimeout(tm);if(n-lt<300){stage.classList.toggle('z');stage.scrollTo(0,0);lt=0}else{lt=n;tm=setTimeout(()=>R.classList.toggle('hide'),300)}}},{passive:true});
+stage.onclick=()=>{if(!('ontouchstart' in window))R.classList.toggle('hide')};
+addEventListener('keydown',e=>{if(!R.classList.contains('on'))return;if(e.key==='ArrowLeft')go(page+1,1);if(e.key==='ArrowRight')go(page-1,-1);if(e.key==='Escape')history.back()});
+let wl;async function lock(){try{if(wake&&navigator.wakeLock)wl=await navigator.wakeLock.request('screen')}catch{}}
+function unlock(){try{wl&&wl.release()}catch{}}
+document.addEventListener('visibilitychange',()=>document.visibilityState==='visible'&&R.classList.contains('on')&&lock());
+$('#wake').onclick=e=>{const w=e.target.dataset.w;if(w==null)return;wake=+w;st.s('wake',wake);$$('#wake button').forEach(b=>b.classList.toggle('on',b.dataset.w===w))};
+$('#gl').oninput=e=>{gk=+e.target.value;st.s('gk',gk);document.documentElement.style.setProperty('--gk',gk/100)};
+
+/* ---------- آفلاین ---------- */
+const CACHE='quran-img-v1';let run=false,stop=false,fail=0;
+const have=async()=>window.caches?(await (await caches.open(CACHE)).keys()).length:0;
+async function offUI(n){if(n==null)n=await have();$('#dBar').style.width=Math.min(100,n/TOTAL*100)+'%';
+ $('#dTxt').textContent=t(n>=TOTAL?'dlDone':'dlD');let s=`${nf(n)} ${t('of')} ${nf(TOTAL)}`;
+ try{const e=await navigator.storage.estimate();s+=` · ${nf((e.usage/1048576).toFixed(0))} ${t('mb')}`}catch{}if(fail&&!run)s+=` · ${nf(fail)} ${t('fail')}`;$('#dSub').textContent=s;appReady();
+ $('#dBtn').textContent=t(run?'dlStop':n>=TOTAL?'dlOk':n?'dlRes':'dlStart');$('#dBtn').disabled=!run&&n>=TOTAL}
+async function download(){if(run){stop=true;return}if(!window.caches)return;
+ run=true;stop=false;fail=0;const c=await caches.open(CACHE),got=new Set((await c.keys()).map(r=>new URL(r.url).pathname));
+ const todo=[];for(let p=1;p<=TOTAL;p++)if(!got.has(new URL(IMG(p),location.href).pathname))todo.push(p);
+ let n=TOTAL-todo.length;try{navigator.storage.persist()}catch{}lock();offUI(n);
+ const w=async()=>{while(todo.length&&!stop){const p=todo.shift();try{let r;for(let k=0;k<3&&!(r&&r.ok);k++)r=await fetch(IMG(p));if(!r.ok)throw 0;await c.put(IMG(p),r);n++}catch{fail++}offUI(n)}};
+ await Promise.all([w(),w(),w(),w()]);run=false;unlock();offUI();toast(t(stop?'paused':fail?'part':'done'))}
+async function appReady(){let ok=false;try{ok=!!(await caches.match('index.html'))&&!!(await caches.match('manifest.json'))}catch{}$('#rdy').textContent=t(ok?'ready':'notReady')}
+async function fontsUI(){const r=[];for(const f of['Vazirmatn','Amiri']){let ok=false;try{ok=(await document.fonts.load(`16px "${f}"`,'ابج')).length>0}catch{}r.push(f+(ok?' ✓':' ✗'))}$('#fnt').textContent=r.join(' · ');$('#fntH').textContent=r.some(x=>x.includes('✗'))?t('fntH'):''}
+$('#dBtn').onclick=download;
+$('#dDel').onclick=async()=>{if(run||!confirm(t('delQ')))return;await caches.delete(CACHE);fail=0;offUI(0)};
+$('#themes').onclick=e=>e.target.dataset.t&&setTheme(e.target.dataset.t);
+
+setTheme(theme);$('#gl').value=gk;document.documentElement.style.setProperty('--gk',gk/100);$$('#wake button').forEach(b=>b.classList.toggle('on',+b.dataset.w===+wake));applyLang();fontsUI();
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
