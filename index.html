@@ -12,13 +12,15 @@
 <link rel="icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/maskable_icon_x192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Vazirmatn:wght@100..900&display=swap">
 <title>القرآن الكريم · قرآن کریم</title>
 <style>
-/* فونت‌ها: اگر فایل‌ها را در پوشه fonts بگذارید استفاده می‌شوند، وگرنه فونت سیستم */
-@font-face{font-family:"Vazirmatn";src:url(fonts/Vazirmatn.woff2) format("woff2"),local("Vazirmatn");font-weight:100 900;font-display:swap}
-@font-face{font-family:"Amiri";src:url(fonts/Amiri-Regular.woff2) format("woff2"),local("Amiri"),local("Amiri Regular");font-display:swap}
+
 :root{--bg:#14090d;--ink:#f7efe4;--mute:#b9a9a3;--mar:#8a1538;--mar2:#c4305c;--teal:#1b8a94;--sand:#e2cda2;--gc:255,255,255;--g0:.09;--gk:1;--gb:26px;--line:rgba(255,255,255,.1);--sh:rgba(0,0,0,.5);
---ar:"Amiri","Noto Naskh Arabic","Geeza Pro","Damascus",serif;--ui:"Vazirmatn","SF Arabic",system-ui,-apple-system,"Noto Sans Arabic",sans-serif;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+--ar:"Almarai","Geeza Pro","Noto Naskh Arabic",system-ui,sans-serif;--ui:"Vazirmatn","SF Arabic",system-ui,-apple-system,"Noto Sans Arabic",sans-serif;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+html[lang=ar]{--ui:"Almarai","Vazirmatn",system-ui,-apple-system,"Noto Sans Arabic",sans-serif}
 @media(prefers-color-scheme:light){:root{--bg:#f3eee6;--ink:#2a1218;--mute:#7b6a66;--g0:.55;--line:rgba(60,20,30,.1);--sh:rgba(80,30,40,.25)}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;color:var(--ink);font:16px/1.65 var(--ui);overscroll-behavior:none;
@@ -27,21 +29,21 @@ button,input{font:inherit;color:inherit}button{background:none;border:0;cursor:p
 :focus-visible{outline:2px solid var(--sand);outline-offset:2px}
 .glass{background:rgba(var(--gc),calc(var(--g0)*var(--gk)));backdrop-filter:blur(var(--gb)) saturate(1.8);-webkit-backdrop-filter:blur(var(--gb)) saturate(1.8);border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 14px 34px -14px var(--sh)}
 .view{display:none;position:fixed;inset:0;overflow-y:auto;padding:calc(var(--sat) + 18px) 18px calc(var(--sab) + 120px);-webkit-overflow-scrolling:touch}.view.on{display:block}
-h1{font:700 34px/1.25 var(--ui);margin:6px 4px 18px;letter-spacing:-.01em}h1.ar{font:400 46px/1.3 var(--ar)}
+h1{font:700 34px/1.25 var(--ui);margin:6px 4px 18px;letter-spacing:-.01em}h1.ar{font:800 34px/1.3 var(--ar)}
 h2{font:600 14px var(--ui);color:var(--mute);margin:28px 8px 10px}
 .hero{display:flex;gap:16px;align-items:center;padding:18px;border-radius:32px;background:linear-gradient(135deg,rgba(168,30,72,.85),rgba(52,8,24,.8))}
 .hero img{width:96px;height:134px;object-fit:cover;object-position:top;border-radius:12px;background:#fff;box-shadow:0 14px 28px -8px #000;flex:none}
-.hero .n{font:400 36px/1.25 var(--ar);color:#fff}.hero .m{color:#f2d8df;font-size:14px}
+.hero .n{font:700 26px/1.4 var(--ar);color:#fff}.hero .m{color:#f2d8df;font-size:14px}
 .bar{height:6px;border-radius:9px;background:rgba(255,255,255,.2);margin:10px 0 4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--sand);border-radius:9px}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 24px;border-radius:99px;font-weight:600;background:var(--ink);color:var(--bg)}.btn.g{background:rgba(var(--gc),.16);color:var(--ink)}.btn.mar{background:var(--mar2);color:#fff}.btn.f{width:100%}.btn:disabled{opacity:.5}
-.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:8px 18px;border-radius:99px;font:400 22px/1.5 var(--ar)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:8px 18px;border-radius:99px;font:700 17px/1.6 var(--ar)}
 .goto{display:flex;gap:8px}.in{flex:1;min-height:50px;border-radius:99px;padding:0 20px;width:100%;color:var(--ink);background:rgba(var(--gc),.1);border:1px solid var(--line)}.in::placeholder{color:var(--mute)}
 .seg{display:flex;border-radius:99px;padding:4px;margin-bottom:12px}.seg button{flex:1;padding:8px;border-radius:99px;color:var(--mute);font-weight:600}.seg .on{background:rgba(var(--gc),.2);color:var(--ink)}
 .grp{border-radius:28px;padding:4px 16px;margin-top:10px}
 .row{display:flex;align-items:center;gap:14px;width:100%;padding:11px 0;border-bottom:1px solid var(--line);text-align:start}.grp>.row:last-child,.grp>div:last-child .row{border:0}
 .num{width:40px;height:40px;flex:none;display:grid;place-items:center;position:relative;font-size:13px;color:var(--sand)}.num:before,.num:after{content:"";position:absolute;inset:7px;border:1.5px solid var(--mar2);border-radius:4px}.num:after{transform:rotate(45deg)}.num b{position:relative;font-weight:600}
-.row .t{flex:1;font:400 26px/1.4 var(--ar)}.row small{color:var(--mute);font-size:13px}.x{color:var(--mute);padding:10px}
-html[lang=fa] .row .t{font:500 21px/1.5 var(--ui)}html[lang=fa] .hero .n{font:600 28px/1.4 var(--ui)}html[lang=fa] .chip{font:500 17px/1.6 var(--ui)}html[lang=fa] .cap b{font:600 18px var(--ui)}
+.row .t{flex:1;font:700 19px/1.5 var(--ar)}.row small{color:var(--mute);font-size:13px}.x{color:var(--mute);padding:10px}
+html[lang=fa] .row .t{font:500 21px/1.5 var(--ui)}html[lang=fa] .hero .n{font:600 28px/1.4 var(--ui)}html[lang=fa] .chip{font:500 17px/1.6 var(--ui)}html[lang=fa] .cap b{font:600 18px var(--ui)}html[lang=fa] h1.ar{font:800 34px/1.3 var(--ui)}
 .empty{text-align:center;color:var(--mute);padding:60px 20px}
 .set{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.set:last-child{border:0}
 .opts{display:flex;gap:6px;padding:4px;border-radius:99px}.opts button{padding:6px 14px;border-radius:99px;color:var(--mute);font-size:14px;font-weight:600}.opts .on{background:rgba(var(--gc),.22);color:var(--ink)}
@@ -50,20 +52,28 @@ nav{position:fixed;left:16px;right:16px;bottom:calc(var(--sab) + 12px);display:f
 nav button{flex:1;display:grid;justify-items:center;padding:7px 4px 5px;border-radius:99px;font-size:11px;font-weight:600;color:var(--mute);line-height:1.4}nav .on{background:rgba(var(--gc),.2);color:var(--ink)}nav .on svg{stroke:var(--mar2)}
 svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 #reader{position:fixed;inset:0;z-index:10;background:#0b0507;display:none}#reader.on{display:block}
-#stage{position:absolute;inset:0;overflow:auto;display:flex;justify-content:center;align-items:center;padding:calc(var(--sat) + 4px) 4px calc(var(--sab) + 4px)}
-#pg{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 24px 70px -10px #000}
-#stage.z{align-items:flex-start;justify-content:flex-start;padding:0}#stage.z #pg{max-width:none;max-height:none;width:230%;border-radius:0}
-.fl{animation:fl .28s ease-out}@keyframes fl{from{opacity:.2;transform:translateX(var(--d,18px))}}
+#stage{position:absolute;inset:0;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;display:flex;justify-content:center;align-items:center;padding:calc(var(--sat) + 4px) 4px calc(var(--sab) + 4px)}
+#pg{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 24px 70px -10px #000;transform-origin:50% 50%;-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#stage.zm{cursor:grab}#stage.zm:active{cursor:grabbing}
+.fl{animation:fl .28s ease-out}@keyframes fl{from{opacity:.2;translate:var(--d,18px) 0}}
 [data-t=sepia] #pg{filter:sepia(.4) brightness(.96)}[data-t=night] #pg{filter:invert(1) hue-rotate(180deg) brightness(.8) contrast(.95);box-shadow:none}
 [data-t=sepia] #reader{background:#2b2116}[data-t=night] #reader{background:#000}
 .rb{position:absolute;left:12px;right:12px;display:flex;align-items:center;gap:8px;z-index:2;transition:transform .3s,opacity .3s;color:var(--ink)}
-.rb.t{top:calc(var(--sat) + 8px)}.rb.b{bottom:calc(var(--sab) + 10px);padding:6px 8px;border-radius:99px;color:#f7efe4}
-.hide .rb.t{transform:translateY(-140%);opacity:0}.hide .rb.b{transform:translateY(160%);opacity:0}
+.rb.t{top:calc(var(--sat) + 8px)}
+.hide .rb.t{transform:translateY(-140%);opacity:0}
 .ib{width:46px;height:46px;flex:none;display:grid;place-items:center;border-radius:50%;color:#f7efe4}.ib.on svg{fill:var(--mar2);stroke:var(--mar2)}
-.cap{flex:1;text-align:center;line-height:1.3;padding:5px 12px;border-radius:99px;color:#f7efe4;user-select:none;-webkit-user-select:none}.cap b{font:400 22px var(--ar);display:block}.cap small{opacity:.7;font-size:12px}
-#pn{font-size:13px;min-width:34px;text-align:center;font-weight:600}
+.cap{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;line-height:1.3;padding:5px 14px;min-height:46px;border-radius:99px;color:#f7efe4;user-select:none;-webkit-user-select:none;cursor:pointer}.cap:active{transform:scale(.98)}
+.cap .cm{display:block;min-width:0}.cap b{font:700 19px var(--ar);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cap small{opacity:.7;font-size:12px;display:block}.cap .chev{width:18px;height:18px;flex:none;opacity:.75}
 #err{position:absolute;inset:0;display:none;place-items:center;text-align:center;padding:40px;color:var(--mute);pointer-events:none}
 #toast{position:fixed;left:50%;bottom:calc(var(--sab) + 96px);transform:translate(-50%,20px);padding:10px 20px;border-radius:99px;opacity:0;transition:.25s;z-index:20;pointer-events:none;font-size:14px}#toast.on{opacity:1;transform:translate(-50%,0)}
+#idx{position:absolute;inset:0;z-index:6;display:none;color:var(--ink);--ink:#f7efe4;--mute:#b9a9a3;--line:rgba(255,255,255,.1);--gc:255,255,255;--g0:.09}
+#idx.on{display:block}
+#idx .bk{position:absolute;inset:0;background:rgba(0,0,0,.55);animation:fi .2s}
+#idx .sheet{position:absolute;left:0;right:0;bottom:0;height:86%;display:flex;flex-direction:column;gap:10px;padding:14px 16px calc(var(--sab) + 12px);border-radius:28px 28px 0 0;background:rgba(24,12,17,.94);-webkit-backdrop-filter:blur(28px) saturate(1.6);backdrop-filter:blur(28px) saturate(1.6);border-top:1px solid rgba(255,255,255,.16);animation:up .3s cubic-bezier(.2,.8,.2,1)}
+#idx .sh-h{display:flex;gap:10px;align-items:center;flex:none}#idx .seg{flex:1;margin:0}
+#idx .sl{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:20px}#idx .grp{margin-top:0}
+.row.cur{background:rgba(var(--gc),.1);border-radius:14px;padding-inline:10px;margin-inline:-10px}.row.cur .t{color:var(--sand)}
+@keyframes up{from{transform:translateY(100%)}}@keyframes fi{from{opacity:0}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -137,13 +147,19 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
   <div id="err" data-i="err"></div>
   <div class="rb t">
     <button class="ib glass" id="rBack" aria-label="Back"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
-    <div class="cap glass" id="cap"><b id="rS"></b><small id="rM"></small></div>
+    <button class="cap glass" id="cap" aria-haspopup="dialog"><span class="cm"><b id="rS"></b><small id="rM"></small></span><svg class="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
     <button class="ib glass" id="rMark" aria-label="Bookmark"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
   </div>
-  <div class="rb b glass">
-    <button class="ib" id="rTheme" aria-label="Theme"><svg viewBox="0 0 24 24"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></button>
-    <input type="range" id="rR" min="1" max="611" aria-label="Page">
-    <span id="pn"></span>
+  <div id="idx" role="dialog" aria-modal="true">
+    <div class="bk" id="xBk"></div>
+    <div class="sheet">
+      <div class="sh-h">
+        <div class="seg glass" id="xSeg"><button class="on" data-m="s" data-i="sur"></button><button data-m="j" data-i="juz"></button></div>
+        <button class="ib glass" id="xCl" aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <input class="in" id="xq" data-ph="sph" style="flex:none">
+      <div class="sl"><div class="glass grp" id="xlist"></div></div>
+    </div>
   </div>
 </div>
 <div id="toast" class="glass"></div>
@@ -173,8 +189,8 @@ wake:['روشن ماندن صفحه','إبقاء الشاشة مضاءة'],on:['
 instT:['نصب روی آیفون','التثبيت على الآيفون'],instD:['در Safari دکمهٔ اشتراک‌گذاری را بزنید و Add to Home Screen را انتخاب کنید.','في Safari اضغط زر المشاركة ثم Add to Home Screen.'],
 bad:['عددی بین ۱ تا ۶۱۱ وارد کنید','أدخل رقمًا من ١ إلى ٦١١'],marked:['نشانه شد','تمت الإضافة'],unmarked:['نشانه برداشته شد','أُزيلت العلامة'],
 done:['دانلود کامل شد','اكتمل التنزيل'],paused:['دانلود متوقف شد','تم الإيقاف'],part:['بعضی صفحه‌ها دانلود نشد','تعذّر تنزيل بعض الصفحات'],
-fnt:['فونت‌ها','الخطوط'],fntH:['اگر ✗ دیدید، پوشهٔ fonts را آپلود کنید؛ فعلاً از فونت سیستم استفاده می‌شود.','إن ظهرت ✗ فارفع مجلد fonts؛ يُستخدم خط النظام حاليًا.'],ready:['برنامه برای استفادهٔ آفلاین آماده است ✓','التطبيق جاهز للعمل دون إنترنت ✓'],notReady:['برنامه هنوز آفلاین نشده؛ یک بار با اینترنت باز کنید و صفحه را دوباره بارگذاری کنید.','لم يُحفظ التطبيق بعد؛ افتحه مرة بالإنترنت ثم أعد التحميل.'],
-cover:['جلد قرآن','غلاف المصحف']};
+fnt:['فونت‌ها','الخطوط'],fntH:['اگر ✗ دیدید، یک بار با اینترنت باز کنید تا فونت‌ها از گوگل دانلود و برای حالت آفلاین ذخیره شوند.','إن ظهرت ✗ فافتح التطبيق مرة بالإنترنت لتُنزَّل الخطوط من Google وتُحفظ للعمل دون إنترنت.'],ready:['برنامه برای استفادهٔ آفلاین آماده است ✓','التطبيق جاهز للعمل دون إنترنت ✓'],notReady:['برنامه هنوز آفلاین نشده؛ یک بار با اینترنت باز کنید و صفحه را دوباره بارگذاری کنید.','لم يُحفظ التطبيق بعد؛ افتحه مرة بالإنترنت ثم أعد التحميل.'],
+cover:['جلد قرآن','غلاف المصحف'],sura:['سوره','سورة']};
 const SN="الفاتحة|البقرة|آل عمران|النساء|المائدة|الأنعام|الأعراف|الأنفال|التوبة|يونس|هود|يوسف|الرعد|إبراهيم|الحجر|النحل|الإسراء|الكهف|مريم|طه|الأنبياء|الحج|المؤمنون|النور|الفرقان|الشعراء|النمل|القصص|العنكبوت|الروم|لقمان|السجدة|الأحزاب|سبأ|فاطر|يس|الصافات|ص|الزمر|غافر|فصلت|الشورى|الزخرف|الدخان|الجاثية|الأحقاف|محمد|الفتح|الحجرات|ق|الذاريات|الطور|النجم|القمر|الرحمن|الواقعة|الحديد|المجادلة|الحشر|الممتحنة|الصف|الجمعة|المنافقون|التغابن|الطلاق|التحريم|الملك|القلم|الحاقة|المعارج|نوح|الجن|المزمل|المدثر|القيامة|الإنسان|المرسلات|النبأ|النازعات|عبس|التكوير|الانفطار|المطففين|الانشقاق|البروج|الطارق|الأعلى|الغاشية|الفجر|البلد|الشمس|الليل|الضحى|الشرح|التين|العلق|القدر|البينة|الزلزلة|العاديات|القارعة|التكاثر|العصر|الهمزة|الفيل|قريش|الماعون|الكوثر|الكافرون|النصر|المسد|الإخلاص|الفلق|الناس".split("|");
 /* شروع سوره‌ها و جزءها (در مختصات صفحهٔ جدید، با احتساب جلد) */
 const ST=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,331,342,350,359,366,376,385,396,404,411,415,418,428,434,440,445,452,458,467,477,483,489,495,498,502,506,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,567,569,571,573,576,578,580,582,584,586,587,589,590,591,592,594,595,596,597,597,598,600,600,601,602,602,603,603,604,604,605,605,606,606,607,607,607,608,608,608,609,609,609,610,610,610].map(x=>x+1);
@@ -182,6 +198,7 @@ const JS=[...Array(30)].map((_,i)=>i===0?1:i===29?586:20*i+2).map(x=>x+1);
 const SF=["فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const st={g:(k,d)=>{try{return JSON.parse(localStorage.getItem('q.'+k))??d}catch{return d}},s:(k,v)=>{try{localStorage.setItem('q.'+k,JSON.stringify(v))}catch{}}};
+let xmode='s',xo=false,skip=false;
 let lang=st.g('lang','fa'),page=st.g('page',2),marks=st.g('marks',[]),theme=st.g('theme','day'),wake=st.g('wake',1),gk=st.g('gk',100),mode='s';
 const nm=i=>lang==='ar'?SN[i]:SF[i];
 const t=k=>S[k][lang==='ar'?1:0];
@@ -191,10 +208,11 @@ const clamp=p=>Math.max(1,Math.min(TOTAL,p|0||1));
 const sOf=p=>{let b=0;ST.forEach((s,i)=>{if(s<=p&&s>=ST[b])b=i});return b};
 const jOf=p=>{let b=0;JS.forEach((s,i)=>{if(s<=p)b=i});return b+1};
 const nmP=p=>p===COVER?t('cover'):nm(sOf(p));
+const nmT=p=>p===COVER?t('cover'):`${t('sura')} ${nm(sOf(p))}`;
 let tt;const toast=m=>{const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1900)};
 
 function applyLang(){document.documentElement.lang=lang;qk();$$('[data-i]').forEach(e=>e.textContent=t(e.dataset.i==='off'&&e.closest('#wake')?'off2':e.dataset.i));$$('[data-ph]').forEach(e=>e.placeholder=t(e.dataset.ph));
- $$('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));renderList();renderMarks();home();offUI();if(R.classList.contains('on'))go(page,0)}
+ $$('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang));renderList();renderX();renderMarks();home();offUI();if(R.classList.contains('on'))go(page,0)}
 $('#lang').onclick=e=>{const l=e.target.dataset.l;if(l){lang=l;st.s('lang',l);applyLang()}};
 
 function show(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='home')home();if(v==='marks')renderMarks();if(v==='off')offUI()}
@@ -207,36 +225,83 @@ $('#gBtn').onclick=()=>{const v=num($('#gIn').value);if(v>=1&&v<=TOTAL){$('#gIn'
 $('#gIn').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#gBtn').click()}};
 if(!navigator.standalone&&/iphone|ipad/i.test(navigator.userAgent))$('#inst').style.display='block';
 
-function renderList(){const q=$('#q').value.trim().replace(/[۰-۹]/g,d=>d.charCodeAt(0)-1776).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-1632);let h='';
- if(mode==='s')SN.forEach((n,i)=>{if(q&&!n.includes(q)&&!SF[i].includes(q)&&String(i+1)!==q)return;h+=`<button class="row" data-p="${ST[i]}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${nm(i)}</span><small>${t('page')} ${nf(ST[i])}</small></button>`});
- else JS.forEach((p,i)=>{if(q&&String(i+1)!==q)return;h+=`<button class="row" data-p="${p}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${t('pj')} ${nf(i+1)}</span><small>${nmP(p)} · ${nf(p)}</small></button>`});
- $('#list').innerHTML=h||`<div class="empty">${t('nf')}</div>`}
+const qn=s=>s.trim().replace(/[۰-۹]/g,d=>d.charCodeAt(0)-1776).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-1632);
+function listHTML(m,q){let h='';const cs=page>COVER?sOf(page):-1,cj=jOf(page)-1;
+ if(m==='s')SN.forEach((n,i)=>{if(q&&!n.includes(q)&&!SF[i].includes(q)&&String(i+1)!==q)return;h+=`<button class="row${i===cs?' cur':''}" data-p="${ST[i]}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${nm(i)}</span><small>${t('page')} ${nf(ST[i])}</small></button>`});
+ else JS.forEach((p,i)=>{if(q&&String(i+1)!==q)return;h+=`<button class="row${i===cj?' cur':''}" data-p="${p}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${t('pj')} ${nf(i+1)}</span><small>${nmP(p)} · ${nf(p)}</small></button>`});
+ return h||`<div class="empty">${t('nf')}</div>`}
+function renderList(){$('#list').innerHTML=listHTML(mode,qn($('#q').value))}
+function renderX(){$('#xlist').innerHTML=listHTML(xmode,qn($('#xq').value))}
 $('#list').onclick=e=>{const r=e.target.closest('.row');r&&open(+r.dataset.p)};$('#q').oninput=renderList;
-$$('.seg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));renderList()});
+$$('#v-index .seg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;$$('#v-index .seg button').forEach(x=>x.classList.toggle('on',x===b));renderList()});
 function renderMarks(){$('#mlist').innerHTML=marks.length?marks.slice().sort((a,b)=>a-b).map(p=>`<div style="display:flex;align-items:center"><button class="row" data-p="${p}"><span class="num"><b>${nf(p)}</b></span><span class="t">${nmP(p)}</span><small>${t('pj')} ${nf(jOf(p))}</small></button><button class="x" data-d="${p}" aria-label="x">✕</button></div>`).join(''):`<div class="empty">${t('emptyM')}</div>`}
 $('#mlist').onclick=e=>{const d=e.target.dataset.d;if(d){marks=marks.filter(x=>x!==+d);st.s('marks',marks);renderMarks();return}const r=e.target.closest('[data-p]');r&&open(+r.dataset.p)};
 
 /* ---------- خواننده ---------- */
 const R=$('#reader'),pg=$('#pg'),stage=$('#stage');
 function setTheme(x){theme=x;document.body.dataset.t=x;st.s('theme',x);$$('#themes button').forEach(b=>b.classList.toggle('on',b.dataset.t===x))}
-function go(p,dir){page=clamp(p);st.s('page',page);$('#err').style.display='none';
+function go(p,dir){page=clamp(p);st.s('page',page);$('#err').style.display='none';resetZ();
  pg.style.setProperty('--d',dir>0?'-18px':'18px');pg.classList.remove('fl');void pg.offsetWidth;pg.classList.add('fl');pg.src=IMG(page);
- $('#rS').textContent=nmP(page);$('#rM').textContent=`${t('pj')} ${nf(jOf(page))}`;$('#pn').textContent=nf(page);$('#rR').value=page;$('#rMark').classList.toggle('on',marks.includes(page));
+ $('#rS').textContent=nmT(page);$('#rM').textContent=`${t('pj')} ${nf(jOf(page))} · ${t('page')} ${nf(page)}`;$('#rMark').classList.toggle('on',marks.includes(page));
  [page+1,page-1,page+2].forEach(n=>n>=1&&n<=TOTAL&&(new Image().src=IMG(n)))}
 pg.onerror=()=>{$('#err').style.display='grid'};
-function open(p){R.classList.add('on');R.classList.remove('hide');stage.classList.remove('z');history.pushState({r:1},'');go(p,0);lock()}
-function close(){R.classList.remove('on');unlock();home()}
-$('#rBack').onclick=()=>history.back();addEventListener('popstate',()=>R.classList.contains('on')&&close());
-$('#rR').oninput=e=>go(+e.target.value,0);
+function open(p){R.classList.add('on');R.classList.remove('hide');history.pushState({r:1},'');go(p,0);lock()}
+function close(){$('#idx').classList.remove('on');xo=false;R.classList.remove('on');unlock();home()}
+$('#rBack').onclick=()=>history.back();addEventListener('popstate',()=>{if(skip){skip=false;return}if(xo){closeIdx(true);return}R.classList.contains('on')&&close()});
 $('#rMark').onclick=()=>{marks=marks.includes(page)?marks.filter(x=>x!==page):[...marks,page];st.s('marks',marks);$('#rMark').classList.toggle('on',marks.includes(page));toast(t(marks.includes(page)?'marked':'unmarked'))};
-$('#rTheme').onclick=()=>setTheme({day:'sepia',sepia:'night',night:'day'}[theme]);
-let x0,y0,lt=0,tm;
-stage.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
-stage.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
- if(!stage.classList.contains('z')&&Math.abs(dx)>50&&Math.abs(dx)>1.5*Math.abs(dy)){dx>0?go(page+1,1):go(page-1,-1);return}
- if(Math.abs(dx)<10&&Math.abs(dy)<10){const n=Date.now();clearTimeout(tm);if(n-lt<300){stage.classList.toggle('z');stage.scrollTo(0,0);lt=0}else{lt=n;tm=setTimeout(()=>R.classList.toggle('hide'),300)}}},{passive:true});
-stage.onclick=()=>{if(!('ontouchstart' in window))R.classList.toggle('hide')};
-addEventListener('keydown',e=>{if(!R.classList.contains('on'))return;if(e.key==='ArrowLeft')go(page+1,1);if(e.key==='ArrowRight')go(page-1,-1);if(e.key==='Escape')history.back()});
+/* ----- زوم دقیق: پینچ، دابل‌تپ، چرخ ماوس؛ سوایپ صفحه فقط وقتی زوم نیست ----- */
+const Z={s:1,x:0,y:0},MAXZ=5,ptr=new Map();
+let gest=false,mv=false,sx=0,sy=0,pd=0,pm=null,lt=0,lx=0,ly=0,tm;
+function ctr(){const r=stage.getBoundingClientRect();return{x:r.left+pg.offsetLeft+pg.offsetWidth/2,y:r.top+pg.offsetTop+pg.offsetHeight/2}}
+function clampAxis(v,sz,w,c){const lo=sz-c-w/2,hi=w/2-c;return lo>hi?0:Math.max(lo,Math.min(hi,v))}
+function applyZ(anim){
+ const w=pg.offsetWidth*Z.s,h=pg.offsetHeight*Z.s,cx=pg.offsetLeft+pg.offsetWidth/2,cy=pg.offsetTop+pg.offsetHeight/2;
+ Z.x=clampAxis(Z.x,stage.clientWidth,w,cx);Z.y=clampAxis(Z.y,stage.clientHeight,h,cy);
+ pg.style.transition=anim?'transform .25s ease':'none';
+ pg.style.transform=(Z.s===1&&!Z.x&&!Z.y)?'':`translate(${Z.x}px,${Z.y}px) scale(${Z.s})`;
+ stage.classList.toggle('zm',Z.s>1.01)}
+function resetZ(anim){Z.s=1;Z.x=0;Z.y=0;applyZ(anim)}
+function zoomAt(fx,fy,ns){ns=Math.max(1,Math.min(MAXZ,ns));const c=ctr(),r=ns/Z.s;Z.x=(fx-c.x)-r*(fx-c.x-Z.x);Z.y=(fy-c.y)-r*(fy-c.y-Z.y);Z.s=ns}
+const two=()=>{const [a,b]=[...ptr.values()];return{d:Math.hypot(a.x-b.x,a.y-b.y),x:(a.x+b.x)/2,y:(a.y+b.y)/2}};
+stage.addEventListener('pointerdown',e=>{
+ if(ptr.size===0){gest=false;mv=false}
+ ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});try{stage.setPointerCapture(e.pointerId)}catch{}
+ if(ptr.size===1){sx=e.clientX;sy=e.clientY}
+ else if(ptr.size===2){gest=true;clearTimeout(tm);lt=0;const g=two();pd=g.d;pm={x:g.x,y:g.y}}});
+stage.addEventListener('pointermove',e=>{const p=ptr.get(e.pointerId);if(!p)return;const ox=p.x,oy=p.y;p.x=e.clientX;p.y=e.clientY;
+ if(ptr.size>=2){const g=two();if(pd>0){zoomAt(g.x,g.y,Z.s*g.d/pd);Z.x+=g.x-pm.x;Z.y+=g.y-pm.y;applyZ()}pd=g.d;pm={x:g.x,y:g.y}}
+ else if(ptr.size===1){if(Math.hypot(e.clientX-sx,e.clientY-sy)>10)mv=true;if(Z.s>1.01&&!gest){Z.x+=e.clientX-ox;Z.y+=e.clientY-oy;applyZ()}}});
+function pup(e,cancel){if(!ptr.delete(e.pointerId))return;pd=0;if(ptr.size>0)return;
+ if(gest&&Z.s<1.05)resetZ(true);
+ const was=gest;gest=false;if(cancel||was)return;
+ const dx=e.clientX-sx,dy=e.clientY-sy;
+ if(Z.s<1.01&&Math.abs(dx)>50&&Math.abs(dx)>1.5*Math.abs(dy)){dx>0?go(page+1,1):go(page-1,-1);return}
+ if(mv)return;
+ const n=Date.now();
+ if(n-lt<300&&Math.hypot(e.clientX-lx,e.clientY-ly)<40){clearTimeout(tm);lt=0;if(Z.s>1.01)resetZ(true);else{zoomAt(e.clientX,e.clientY,2.5);applyZ(true)}}
+ else{lt=n;lx=e.clientX;ly=e.clientY;tm=setTimeout(()=>R.classList.toggle('hide'),300)}}
+stage.addEventListener('pointerup',e=>pup(e,false));stage.addEventListener('pointercancel',e=>pup(e,true));
+stage.addEventListener('wheel',e=>{e.preventDefault();zoomAt(e.clientX,e.clientY,Z.s*Math.exp(-e.deltaY*(e.ctrlKey?.01:.0025)));if(Z.s<1.02)resetZ();else applyZ()},{passive:false});
+['gesturestart','gesturechange'].forEach(ev=>document.addEventListener(ev,e=>{if(R.classList.contains('on'))e.preventDefault()},{passive:false}));
+pg.addEventListener('dragstart',e=>e.preventDefault());
+addEventListener('resize',()=>applyZ());
+
+/* ----- فهرست داخل خواننده (با کلیک روی نوار بالا) ----- */
+function openIdx(){if(xo)return;$('#xq').value='';$$('#xSeg button').forEach(b=>b.classList.toggle('on',b.dataset.m===xmode));renderX();
+ $('#idx').classList.add('on');xo=true;history.pushState({x:1},'');const c=$('#xlist .cur');c&&c.scrollIntoView({block:'center'})}
+function closeIdx(pop){$('#idx').classList.remove('on');if(!xo)return;xo=false;if(!pop){skip=true;history.back()}}
+$('#cap').onclick=openIdx;$('#xCl').onclick=()=>closeIdx();$('#xBk').onclick=()=>closeIdx();
+$('#xq').oninput=renderX;
+$$('#xSeg button').forEach(b=>b.onclick=()=>{xmode=b.dataset.m;$$('#xSeg button').forEach(x=>x.classList.toggle('on',x===b));renderX()});
+$('#xlist').onclick=e=>{const r=e.target.closest('.row');if(r){closeIdx();go(+r.dataset.p,0)}};
+
+addEventListener('keydown',e=>{if(!R.classList.contains('on'))return;
+ if(xo){if(e.key==='Escape')closeIdx();return}
+ if(e.key==='ArrowLeft'&&Z.s<1.01)go(page+1,1);if(e.key==='ArrowRight'&&Z.s<1.01)go(page-1,-1);
+ if(e.key==='+'||e.key==='='){const c=ctr();zoomAt(c.x,c.y,Z.s*1.4);applyZ(true)}
+ if(e.key==='-'){const c=ctr();zoomAt(c.x,c.y,Z.s/1.4);if(Z.s<1.02)resetZ(true);else applyZ(true)}
+ if(e.key==='0')resetZ(true);
+ if(e.key==='Escape')history.back()});
 let wl;async function lock(){try{if(wake&&navigator.wakeLock)wl=await navigator.wakeLock.request('screen')}catch{}}
 function unlock(){try{wl&&wl.release()}catch{}}
 document.addEventListener('visibilitychange',()=>document.visibilityState==='visible'&&R.classList.contains('on')&&lock());
@@ -257,7 +322,7 @@ async function download(){if(run){stop=true;return}if(!window.caches)return;
  const w=async()=>{while(todo.length&&!stop){const p=todo.shift();try{let r;for(let k=0;k<3&&!(r&&r.ok);k++)r=await fetch(IMG(p));if(!r.ok)throw 0;await c.put(IMG(p),r);n++}catch{fail++}offUI(n)}};
  await Promise.all([w(),w(),w(),w()]);run=false;unlock();offUI();toast(t(stop?'paused':fail?'part':'done'))}
 async function appReady(){let ok=false;try{ok=!!(await caches.match('index.html'))&&!!(await caches.match('manifest.json'))}catch{}$('#rdy').textContent=t(ok?'ready':'notReady')}
-async function fontsUI(){const r=[];for(const f of['Vazirmatn','Amiri']){let ok=false;try{ok=(await document.fonts.load(`16px "${f}"`,'ابج')).length>0}catch{}r.push(f+(ok?' ✓':' ✗'))}$('#fnt').textContent=r.join(' · ');$('#fntH').textContent=r.some(x=>x.includes('✗'))?t('fntH'):''}
+async function fontsUI(){const r=[];for(const f of['Vazirmatn','Almarai']){let ok=false;try{ok=(await document.fonts.load(`16px "${f}"`,'ابج')).length>0}catch{}r.push(f+(ok?' ✓':' ✗'))}$('#fnt').textContent=r.join(' · ');$('#fntH').textContent=r.some(x=>x.includes('✗'))?t('fntH'):''}
 $('#dBtn').onclick=download;
 $('#dDel').onclick=async()=>{if(run||!confirm(t('delQ')))return;await caches.delete(CACHE);fail=0;offUI(0)};
 $('#themes').onclick=e=>e.target.dataset.t&&setTheme(e.target.dataset.t);
