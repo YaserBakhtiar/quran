@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <title>القرآن الكريم · قرآن کریم</title>
 <style>
-/* فونت‌ها: اگر فایل‌ها را در پوشهٔ fonts بگذارید استفاده می‌شوند، وگرنه فونت سیستم */
+/* فونت‌ها: اگر فایل‌ها را در پوشه fonts بگذارید استفاده می‌شوند، وگرنه فونت سیستم */
 @font-face{font-family:"Vazirmatn";src:url(fonts/Vazirmatn.woff2) format("woff2"),local("Vazirmatn");font-weight:100 900;font-display:swap}
 @font-face{font-family:"Amiri";src:url(fonts/Amiri-Regular.woff2) format("woff2"),local("Amiri"),local("Amiri Regular");font-display:swap}
 :root{--bg:#14090d;--ink:#f7efe4;--mute:#b9a9a3;--mar:#8a1538;--mar2:#c4305c;--teal:#1b8a94;--sand:#e2cda2;--gc:255,255,255;--g0:.09;--gk:1;--gb:26px;--line:rgba(255,255,255,.1);--sh:rgba(0,0,0,.5);
@@ -85,7 +85,10 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
   <h2 data-i="quick"></h2>
   <div class="chips" id="quick"></div>
   <h2 data-i="gotoT"></h2>
-  <div class="goto"><input class="in" id="gIn" type="number" inputmode="numeric" min="1" max="610" data-ph="gph"><button class="btn g glass" id="gBtn" data-i="gbtn"></button></div>
+  <div class="goto">
+    <input class="in" id="gIn" type="text" inputmode="numeric" autocomplete="off" maxlength="3" data-ph="gph">
+    <button class="btn g glass" id="gBtn" data-i="gbtn"></button>
+  </div>
   <div class="glass grp" id="inst" style="display:none;padding:14px 18px;margin-top:26px"><b data-i="instT"></b><p style="margin:4px 0 0;color:var(--mute);font-size:14px" data-i="instD"></p></div>
 </section>
 
@@ -126,7 +129,7 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
   <button class="on" data-v="home"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v15H6a2 2 0 0 0-2 2zM19 18v3H6"/></svg><span data-i="home"></span></button>
   <button data-v="index"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><span data-i="index"></span></button>
   <button data-v="marks"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg><span data-i="marks"></span></button>
-  <button data-v="off"><svg viewBox="0 0 24 24"><path d="M12 4v11m-4-4 4 4 4-4M5 20h14"/></svg><span data-i="off"></span></button>
+  <button data-v="off"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.65 1.65 0 0 0 15 19.4a1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span data-i="off"></span></button>
 </nav>
 
 <div id="reader">
@@ -139,7 +142,7 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
   </div>
   <div class="rb b glass">
     <button class="ib" id="rTheme" aria-label="Theme"><svg viewBox="0 0 24 24"><path d="M21 13A9 9 0 1 1 11 3a7 7 0 0 0 10 10z"/></svg></button>
-    <input type="range" id="rR" min="1" max="610" aria-label="Page">
+    <input type="range" id="rR" min="1" max="611" aria-label="Page">
     <span id="pn"></span>
   </div>
 </div>
@@ -147,41 +150,47 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 
 <script>
 /* ============ تنظیمات / إعدادات ============
-   Quran002.webp = صفحهٔ ۱ (الفاتحه). 610 صفحه + یک جلد = 611 فایل.
-   اگر فایل‌های شما شمارهٔ دیگری دارند فقط این سه خط را عوض کنید. */
-const TOTAL=610, FILE_OFFSET=1;
-const IMG=p=>`webp-image/Quran${String(p+FILE_OFFSET).padStart(3,'0')}.webp`;
+   Quran001.webp = جلد (صفحه ۱)
+   Quran002.webp = سورهٔ فاتحه (صفحه ۲)
+   ...
+   Quran611.webp = سورهٔ ناس (صفحه ۶۱۱)
+   یعنی: شمارهٔ صفحه == شمارهٔ فایل */
+const TOTAL=611, COVER=1;
+const IMG=p=>`webp-image/Quran${String(p).padStart(3,'0')}.webp`;
 /* ======================================== */
 const S={
 title:['قرآن کریم','القرآن الكريم'],cont:['ادامهٔ مطالعه','تابع القراءة'],resume:['ادامه بده','تابع'],quick:['سوره‌های پرخوان','سور مختارة'],
-gotoT:['رفتن به صفحه','الانتقال إلى صفحة'],gph:['شمارهٔ صفحه، ۱ تا ۶۱۰','رقم الصفحة من ١ إلى ٦١٠'],gbtn:['برو','اذهب'],
-home:['خانه','الرئيسية'],index:['فهرست','الفهرس'],marks:['نشانه‌ها','العلامات'],off:['آفلاین','دون إنترنت'],set:['آفلاین و تنظیمات','التنزيل والإعدادات'],
-sur:['سوره‌ها','السور'],juz:['جزءها','الأجزاء'],sph:['جستجوی سوره یا شماره…','ابحث عن سورة أو رقم…'],pj:['جزء','الجزء'],page:['صفحه','صفحة'],
+gotoT:['رفتن به صفحه','الانتقال إلى صفحة'],gph:['شماره صفحه، ۱ تا ۶۱۱','رقم الصفحة من ١ إلى ٦١١'],gbtn:['برو','اذهب'],
+home:['خانه','الرئيسية'],index:['فهرست','الفهرس'],marks:['نشانه‌ها','العلامات'],off:['تنظیمات','الإعدادات'],set:['تنظیمات','الإعدادات'],
+sur:['سوره‌ها','السور'],juz:['جزءها','الأجزاء'],sph:['جستجو سوره یا شماره…','ابحث عن سورة أو رقم…'],pj:['جزء','الجزء'],page:['صفحه','صفحة'],
 emptyM:['هنوز صفحه‌ای نشانه نشده. هنگام مطالعه روی نشانه بزنید.','لا توجد علامات بعد. اضغط على العلامة أثناء القراءة.'],nf:['چیزی پیدا نشد','لا نتائج'],
 dlT:['دانلود برای استفادهٔ بدون اینترنت','تنزيل للقراءة دون إنترنت'],
 dlD:['با Wi-Fi دانلود کنید تا همهٔ صفحه‌ها روی گوشی بماند.','نزّل عبر Wi-Fi لتبقى كل الصفحات على جهازك.'],dlDone:['همهٔ صفحه‌ها ذخیره است؛ برنامه بدون اینترنت کار می‌کند.','كل الصفحات محفوظة؛ يعمل التطبيق دون إنترنت.'],
-dlStart:['دانلود کل قرآن','تنزيل المصحف كاملاً'],dlRes:['ادامهٔ دانلود','متابعة التنزيل'],dlStop:['توقف','إيقاف'],dlOk:['همه دانلود شده ✓','تم التنزيل ✓'],
+dlStart:['دانلود کل قرآن','تنزيل المصحف كاملًا'],dlRes:['ادامهٔ دانلود','متابعة التنزيل'],dlStop:['توقف','إيقاف'],dlOk:['همه دانلود شد ✓','تم التنزيل ✓'],
 of:['از','من'],fail:['ناموفق','فشل'],mb:['مگابایت','ميغابايت'],del:['پاک کردن دانلودها','حذف التنزيلات'],delQ:['همهٔ صفحه‌های دانلودشده پاک شود؟','حذف كل الصفحات المنزّلة؟'],
 look:['ظاهر و زبان','المظهر واللغة'],lang:['زبان','اللغة'],day:['روز','نهار'],sepia:['کاغذی','ورقي'],night:['شب','ليل'],glass:['شفافیت شیشه','شفافية الزجاج'],
-wake:['روشن ماندن صفحه','إبقاء الشاشة مضاءة'],on:['روشن','تشغيل'],off2:['خاموش','إيقاف'],err:['این صفحه دانلود نشده و اینترنت وصل نیست. از بخش «آفلاین» دانلود کنید.','هذه الصفحة غير منزّلة ولا يوجد اتصال. نزّلها من قسم «دون إنترنت».'],
+wake:['روشن ماندن صفحه','إبقاء الشاشة مضاءة'],on:['روشن','تشغيل'],off2:['خاموش','إيقاف'],err:['این صفحه دانلود نشده و اینترنت وصل نیست. از بخش «تنظیمات» دانلود کنید.','هذه الصفحة غير منزّلة ولا يوجد اتصال. نزّلها من قسم «الإعدادات».'],
 instT:['نصب روی آیفون','التثبيت على الآيفون'],instD:['در Safari دکمهٔ اشتراک‌گذاری را بزنید و Add to Home Screen را انتخاب کنید.','في Safari اضغط زر المشاركة ثم Add to Home Screen.'],
-bad:['عددی بین ۱ تا ۶۱۰ وارد کنید','أدخل رقماً من ١ إلى ٦١٠'],marked:['نشانه شد','تمت الإضافة'],unmarked:['نشانه برداشته شد','أُزيلت العلامة'],
+bad:['عددی بین ۱ تا ۶۱۱ وارد کنید','أدخل رقمًا من ١ إلى ٦١١'],marked:['نشانه شد','تمت الإضافة'],unmarked:['نشانه برداشته شد','أُزيلت العلامة'],
 done:['دانلود کامل شد','اكتمل التنزيل'],paused:['دانلود متوقف شد','تم الإيقاف'],part:['بعضی صفحه‌ها دانلود نشد','تعذّر تنزيل بعض الصفحات'],
-fnt:['فونت‌ها','الخطوط'],fntH:['اگر ✗ دیدید، پوشهٔ fonts را آپلود کنید؛ فعلاً از فونت سیستم استفاده می‌شود.','إن ظهرت ✗ فارفع مجلد fonts؛ يُستخدم خط النظام حالياً.'],ready:['برنامه برای استفادهٔ آفلاین آماده است ✓','التطبيق جاهز للعمل دون إنترنت ✓'],notReady:['برنامه هنوز آفلاین نشده؛ یک بار با اینترنت باز کنید و صفحه را دوباره بارگذاری کنید.','لم يُحفظ التطبيق بعد؛ افتحه مرة بالإنترنت ثم أعد التحميل.']};
+fnt:['فونت‌ها','الخطوط'],fntH:['اگر ✗ دیدید، پوشهٔ fonts را آپلود کنید؛ فعلاً از فونت سیستم استفاده می‌شود.','إن ظهرت ✗ فارفع مجلد fonts؛ يُستخدم خط النظام حاليًا.'],ready:['برنامه برای استفادهٔ آفلاین آماده است ✓','التطبيق جاهز للعمل دون إنترنت ✓'],notReady:['برنامه هنوز آفلاین نشده؛ یک بار با اینترنت باز کنید و صفحه را دوباره بارگذاری کنید.','لم يُحفظ التطبيق بعد؛ افتحه مرة بالإنترنت ثم أعد التحميل.'],
+cover:['جلد قرآن','غلاف المصحف']};
 const SN="الفاتحة|البقرة|آل عمران|النساء|المائدة|الأنعام|الأعراف|الأنفال|التوبة|يونس|هود|يوسف|الرعد|إبراهيم|الحجر|النحل|الإسراء|الكهف|مريم|طه|الأنبياء|الحج|المؤمنون|النور|الفرقان|الشعراء|النمل|القصص|العنكبوت|الروم|لقمان|السجدة|الأحزاب|سبأ|فاطر|يس|الصافات|ص|الزمر|غافر|فصلت|الشورى|الزخرف|الدخان|الجاثية|الأحقاف|محمد|الفتح|الحجرات|ق|الذاريات|الطور|النجم|القمر|الرحمن|الواقعة|الحديد|المجادلة|الحشر|الممتحنة|الصف|الجمعة|المنافقون|التغابن|الطلاق|التحريم|الملك|القلم|الحاقة|المعارج|نوح|الجن|المزمل|المدثر|القيامة|الإنسان|المرسلات|النبأ|النازعات|عبس|التكوير|الانفطار|المطففين|الانشقاق|البروج|الطارق|الأعلى|الغاشية|الفجر|البلد|الشمس|الليل|الضحى|الشرح|التين|العلق|القدر|البينة|الزلزلة|العاديات|القارعة|التكاثر|العصر|الهمزة|الفيل|قريش|الماعون|الكوثر|الكافرون|النصر|المسد|الإخلاص|الفلق|الناس".split("|");
-/* شروع سوره‌ها (شمارهٔ صفحه) و جزءها: دقیق، از فهرست مصحف هندوپاک ۶۱۰ صفحه‌ای */
-const ST=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,331,342,350,359,366,376,385,396,404,411,415,418,428,434,440,445,452,458,467,477,483,489,495,498,502,506,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,567,569,571,573,576,578,580,582,584,586,587,589,590,591,592,594,595,596,597,597,598,600,600,601,602,602,603,603,604,604,605,605,606,606,607,607,607,608,608,608,609,609,609,610,610,610];
-const JS=[...Array(30)].map((_,i)=>i===0?1:i===29?586:20*i+2);
+/* شروع سوره‌ها و جزءها (در مختصات صفحهٔ جدید، با احتساب جلد) */
+const ST=[1,2,50,77,106,128,151,177,187,208,221,235,249,255,262,267,282,293,305,312,322,331,342,350,359,366,376,385,396,404,411,415,418,428,434,440,445,452,458,467,477,483,489,495,498,502,506,511,515,518,520,523,526,528,531,534,537,542,545,549,551,553,554,556,558,560,562,564,567,569,571,573,576,578,580,582,584,586,587,589,590,591,592,594,595,596,597,597,598,600,600,601,602,602,603,603,604,604,605,605,606,606,607,607,607,608,608,608,609,609,609,610,610,610].map(x=>x+1);
+const JS=[...Array(30)].map((_,i)=>i===0?1:i===29?586:20*i+2).map(x=>x+1);
 const SF=["فاتحه","بقره","آل‌عمران","نساء","مائده","انعام","اعراف","انفال","توبه","یونس","هود","یوسف","رعد","ابراهیم","حجر","نحل","اسراء","کهف","مریم","طه","انبیاء","حج","مؤمنون","نور","فرقان","شعراء","نمل","قصص","عنکبوت","روم","لقمان","سجده","احزاب","سبأ","فاطر","یس","صافات","ص","زمر","غافر","فصلت","شوری","زخرف","دخان","جاثیه","احقاف","محمد","فتح","حجرات","ق","ذاریات","طور","نجم","قمر","الرحمن","واقعه","حدید","مجادله","حشر","ممتحنه","صف","جمعه","منافقون","تغابن","طلاق","تحریم","ملک","قلم","حاقه","معارج","نوح","جن","مزمل","مدثر","قیامت","انسان","مرسلات","نبأ","نازعات","عبس","تکویر","انفطار","مطففین","انشقاق","بروج","طارق","اعلی","غاشیه","فجر","بلد","شمس","لیل","ضحی","شرح","تین","علق","قدر","بینه","زلزله","عادیات","قارعه","تکاثر","عصر","همزه","فیل","قریش","ماعون","کوثر","کافرون","نصر","مسد","اخلاص","فلق","ناس"];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const st={g:(k,d)=>{try{return JSON.parse(localStorage.getItem('q.'+k))??d}catch{return d}},s:(k,v)=>{try{localStorage.setItem('q.'+k,JSON.stringify(v))}catch{}}};
-let lang=st.g('lang','fa'),page=st.g('page',1),marks=st.g('marks',[]),theme=st.g('theme','day'),wake=st.g('wake',1),gk=st.g('gk',100),mode='s';
+let lang=st.g('lang','fa'),page=st.g('page',2),marks=st.g('marks',[]),theme=st.g('theme','day'),wake=st.g('wake',1),gk=st.g('gk',100),mode='s';
 const nm=i=>lang==='ar'?SN[i]:SF[i];
 const t=k=>S[k][lang==='ar'?1:0];
 const nf=n=>String(n).replace(/\d/g,d=>(lang==='ar'?'٠١٢٣٤٥٦٧٨٩':'۰۱۲۳۴۵۶۷۸۹')[d]);
+const num=s=>parseInt(String(s).replace(/[۰-۹]/g,d=>d.charCodeAt(0)-1776).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-1632).replace(/[^\d]/g,''),10);
 const clamp=p=>Math.max(1,Math.min(TOTAL,p|0||1));
 const sOf=p=>{let b=0;ST.forEach((s,i)=>{if(s<=p&&s>=ST[b])b=i});return b};
 const jOf=p=>{let b=0;JS.forEach((s,i)=>{if(s<=p)b=i});return b+1};
+const nmP=p=>p===COVER?t('cover'):nm(sOf(p));
 let tt;const toast=m=>{const e=$('#toast');e.textContent=m;e.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>e.classList.remove('on'),1900)};
 
 function applyLang(){document.documentElement.lang=lang;qk();$$('[data-i]').forEach(e=>e.textContent=t(e.dataset.i==='off'&&e.closest('#wake')?'off2':e.dataset.i));$$('[data-ph]').forEach(e=>e.placeholder=t(e.dataset.ph));
@@ -190,21 +199,21 @@ $('#lang').onclick=e=>{const l=e.target.dataset.l;if(l){lang=l;st.s('lang',l);ap
 
 function show(v){$$('.view').forEach(e=>e.classList.toggle('on',e.id==='v-'+v));$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));if(v==='home')home();if(v==='marks')renderMarks();if(v==='off')offUI()}
 $$('#tabs button').forEach(b=>b.onclick=()=>show(b.dataset.v));
-function home(){$('#hThumb').src=IMG(page);$('#hName').textContent=nm(sOf(page));$('#hMeta').textContent=`${t('page')} ${nf(page)} · ${t('pj')} ${nf(jOf(page))}`;$('#hBar').style.width=page/TOTAL*100+'%';$('#hPct').textContent=nf(Math.round(page/TOTAL*100))+'٪'}
+function home(){$('#hThumb').src=IMG(page);$('#hName').textContent=nmP(page);$('#hMeta').textContent=`${t('page')} ${nf(page)} · ${t('pj')} ${nf(jOf(page))}`;$('#hBar').style.width=page/TOTAL*100+'%';$('#hPct').textContent=nf(Math.round(page/TOTAL*100))+'٪'}
 $('#hGo').onclick=()=>open(page);
 const qk=()=>{$('#quick').innerHTML=[36,18,67,55,56,2].map(s=>`<button class="chip glass" data-s="${s-1}">${nm(s-1)}</button>`).join('')};
-$('#quick').onclick=e=>{const s=e.target.dataset.s;if(s)open(ST[s])};
-$('#gBtn').onclick=()=>{const v=+$('#gIn').value;v>=1&&v<=TOTAL?open(v):toast(t('bad'))};
-$('#gIn').onkeydown=e=>e.key==='Enter'&&$('#gBtn').click();
+$('#quick').onclick=e=>{const s=e.target.dataset.s;if(s!=null)open(ST[s])};
+$('#gBtn').onclick=()=>{const v=num($('#gIn').value);if(v>=1&&v<=TOTAL){$('#gIn').value='';$('#gIn').blur();open(v)}else toast(t('bad'))};
+$('#gIn').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();$('#gBtn').click()}};
 if(!navigator.standalone&&/iphone|ipad/i.test(navigator.userAgent))$('#inst').style.display='block';
 
 function renderList(){const q=$('#q').value.trim().replace(/[۰-۹]/g,d=>d.charCodeAt(0)-1776).replace(/[٠-٩]/g,d=>d.charCodeAt(0)-1632);let h='';
  if(mode==='s')SN.forEach((n,i)=>{if(q&&!n.includes(q)&&!SF[i].includes(q)&&String(i+1)!==q)return;h+=`<button class="row" data-p="${ST[i]}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${nm(i)}</span><small>${t('page')} ${nf(ST[i])}</small></button>`});
- else JS.forEach((p,i)=>{if(q&&String(i+1)!==q)return;h+=`<button class="row" data-p="${p}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${t('pj')} ${nf(i+1)}</span><small>${nm(sOf(p))} · ${nf(p)}</small></button>`});
+ else JS.forEach((p,i)=>{if(q&&String(i+1)!==q)return;h+=`<button class="row" data-p="${p}"><span class="num"><b>${nf(i+1)}</b></span><span class="t">${t('pj')} ${nf(i+1)}</span><small>${nmP(p)} · ${nf(p)}</small></button>`});
  $('#list').innerHTML=h||`<div class="empty">${t('nf')}</div>`}
 $('#list').onclick=e=>{const r=e.target.closest('.row');r&&open(+r.dataset.p)};$('#q').oninput=renderList;
 $$('.seg button').forEach(b=>b.onclick=()=>{mode=b.dataset.m;$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));renderList()});
-function renderMarks(){$('#mlist').innerHTML=marks.length?marks.slice().sort((a,b)=>a-b).map(p=>`<div style="display:flex;align-items:center"><button class="row" data-p="${p}"><span class="num"><b>${nf(p)}</b></span><span class="t">${nm(sOf(p))}</span><small>${t('pj')} ${nf(jOf(p))}</small></button><button class="x" data-d="${p}" aria-label="x">✕</button></div>`).join(''):`<div class="empty">${t('emptyM')}</div>`}
+function renderMarks(){$('#mlist').innerHTML=marks.length?marks.slice().sort((a,b)=>a-b).map(p=>`<div style="display:flex;align-items:center"><button class="row" data-p="${p}"><span class="num"><b>${nf(p)}</b></span><span class="t">${nmP(p)}</span><small>${t('pj')} ${nf(jOf(p))}</small></button><button class="x" data-d="${p}" aria-label="x">✕</button></div>`).join(''):`<div class="empty">${t('emptyM')}</div>`}
 $('#mlist').onclick=e=>{const d=e.target.dataset.d;if(d){marks=marks.filter(x=>x!==+d);st.s('marks',marks);renderMarks();return}const r=e.target.closest('[data-p]');r&&open(+r.dataset.p)};
 
 /* ---------- خواننده ---------- */
@@ -212,7 +221,7 @@ const R=$('#reader'),pg=$('#pg'),stage=$('#stage');
 function setTheme(x){theme=x;document.body.dataset.t=x;st.s('theme',x);$$('#themes button').forEach(b=>b.classList.toggle('on',b.dataset.t===x))}
 function go(p,dir){page=clamp(p);st.s('page',page);$('#err').style.display='none';
  pg.style.setProperty('--d',dir>0?'-18px':'18px');pg.classList.remove('fl');void pg.offsetWidth;pg.classList.add('fl');pg.src=IMG(page);
- $('#rS').textContent=nm(sOf(page));$('#rM').textContent=`${t('pj')} ${nf(jOf(page))}`;$('#pn').textContent=nf(page);$('#rR').value=page;$('#rMark').classList.toggle('on',marks.includes(page));
+ $('#rS').textContent=nmP(page);$('#rM').textContent=`${t('pj')} ${nf(jOf(page))}`;$('#pn').textContent=nf(page);$('#rR').value=page;$('#rMark').classList.toggle('on',marks.includes(page));
  [page+1,page-1,page+2].forEach(n=>n>=1&&n<=TOTAL&&(new Image().src=IMG(n)))}
 pg.onerror=()=>{$('#err').style.display='grid'};
 function open(p){R.classList.add('on');R.classList.remove('hide');stage.classList.remove('z');history.pushState({r:1},'');go(p,0);lock()}
